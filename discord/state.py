@@ -795,6 +795,7 @@ class ConnectionState:
                 self._messages.remove(old_message)
             self._messages.append(message)
         raw = RawMessageUpdateEvent(data, message)
+        raw.cached_message = old_message
         self.dispatch("raw_message_edit", raw)
         if old_message is not None:
             self.dispatch("message_edit", old_message, message)
